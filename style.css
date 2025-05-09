@@ -1,0 +1,1041 @@
+/* --- style.css --- */
+/* Importa fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* --- Variáveis de Cor (Tema Dracula/Neon Escuro) --- */
+:root {
+    --cor-fundo-principal-inicio: #1a1a2e; /* Azul/Roxo bem escuro (início gradiente) */
+    --cor-fundo-principal-fim: #16213e;    /* Azul escuro (fim gradiente) */
+    --cor-container-fundo: rgba(40, 42, 54, 0.85); /* Cinza escuro Dracula semi-transparente */
+    --cor-container-borda: #bd93f9; /* Roxo claro neon (bordas principais) */
+    --cor-texto-padrao: #e0e0ff;    /* Branco levemente azulado/roxo */
+    --cor-texto-cabecalho: #f8f8f2; /* Branco quase puro Dracula */
+    --cor-texto-secundario: #b0b0d0; /* Cinza azulado claro */
+    --cor-verde-neon: #50fa7b;
+    --cor-rosa-neon: #ff79c6;
+    --cor-roxo-claro: #bd93f9;
+    --cor-amarelo-claro: #f1fa8c;
+    --cor-laranja-neon: #ffb86c; /* Adicional Dracula Orange */
+    --cor-ciano-neon: #8be9fd;   /* Adicional Dracula Cyan */
+    --cor-cinza-escuro-1: #44475a; /* Cinza médio escuro */
+    --cor-cinza-escuro-2: #282a36; /* Cinza mais escuro (base Dracula) */
+    --cor-borda-input: #6272a4; /* Cinza azulado para bordas sutis */
+    --cor-fundo-desabilitado: #4a4a5e;
+    --cor-texto-desabilitado: #9090a0;
+
+    --sombra-padrao: 0 6px 20px rgba(0, 0, 0, 0.4);
+    --border-radius-padrao: 8px;
+    --transicao-rapida: all 0.2s ease-in-out;
+}
+
+/* --- Reset Básico e Estilos Globais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base para REM */
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Espaço para header fixo se necessário */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    background: linear-gradient(135deg, var(--cor-fundo-principal-inicio), var(--cor-fundo-principal-fim));
+    color: var(--cor-texto-padrao);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Previne scroll horizontal indesejado */
+}
+
+/* --- Estilos para o Efeito GEEK CΦDΞ --- */
+.geek { color: var(--cor-verde-neon); font-weight: bold; }
+.code { color: var(--cor-rosa-neon); font-weight: bold; }
+
+/* --- ESTILOS DO EDITOR DE IMAGENS (index.html) --- */
+
+.editor-container {
+    display: flex;
+    flex-grow: 1; /* Ocupa o espaço restante */
+    width: 100%;
+    min-height: 0; /* Previne problemas de altura no flex item */
+    overflow: hidden; /* Garante que o container principal controle o scroll */
+    height: calc(100vh - 60px); /* Ajusta altura descontando o rodapé */
+}
+
+/* Painel de Controles Lateral */
+.controls-panel {
+    width: 380px;
+    flex-shrink: 0;
+    background-color: var(--cor-cinza-escuro-2);
+    padding: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+    border-right: 2px solid var(--cor-roxo-claro);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Área Principal (Canvas + Footer Ações) */
+.main-content-area {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--cor-fundo-principal-fim), var(--cor-fundo-principal-inicio)); /* Gradiente invertido */
+}
+
+.canvas-area {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    overflow: auto; /* Permite scroll do canvas */
+    position: relative; /* Para o posicionamento do tempCanvas e cropOverlay */
+    min-height: 0; /* Previne problemas de altura no flex item */
+}
+
+/* Rodapé de Ações (Undo, Redo, etc.) */
+.action-buttons-footer {
+    flex-shrink: 0;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--cor-cinza-escuro-2);
+    border-top: 1px solid var(--cor-cinza-escuro-1);
+    text-align: center;
+    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-buttons-footer .action-buttons-container {
+    display: inline-flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+/* Cabeçalho do Painel de Controles */
+.controls-panel h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6em;
+    color: var(--cor-texto-cabecalho);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cor-cinza-escuro-1);
+    text-shadow: 0 0 5px var(--cor-rosa-neon); /* Leve brilho neon */
+}
+
+.controls-panel h1 i {
+    margin-right: 0.6rem;
+    color: var(--cor-rosa-neon);
+}
+
+/* Seções dentro do Painel */
+.control-section {
+    border: 1px solid var(--cor-cinza-escuro-1);
+    padding: 1rem 1.2rem;
+    border-radius: var(--border-radius-padrao);
+    background-color: var(--cor-container-fundo);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5rem; /* Espaço entre seções */
+}
+
+.control-section h2 {
+    font-size: 1.15em;
+    margin-bottom: 1rem;
+    color: var(--cor-roxo-claro);
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed var(--cor-cinza-escuro-1);
+    display: flex;
+    align-items: center;
+}
+
+.control-section h2 i {
+    margin-right: 0.6rem;
+    color: var(--cor-roxo-claro);
+    width: 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* Subtítulos (h3) */
+.control-section h3 {
+    font-size: 1.05em;
+    margin-bottom: 0.5rem;
+    color: var(--cor-ciano-neon); /* Ciano para subtítulos */
+    display: flex;
+    align-items: center;
+}
+.control-section h3 i {
+    margin-right: 0.5rem;
+    color: var(--cor-ciano-neon);
+    width: 20px; text-align: center;
+}
+
+
+/* --- ESTILOS DOS ELEMENTOS DE INTERFACE (Botões, Sliders, Inputs, etc.) --- */
+
+/* Botões Gerais e Labels tipo Botão */
+button, .button-like-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background-color: var(--cor-cinza-escuro-1);
+    color: var(--cor-texto-padrao);
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--cor-roxo-claro); /* Borda neon sutil */
+    border-radius: var(--border-radius-padrao);
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    margin: 0.3rem 0.15rem;
+    transition: var(--transicao-rapida);
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button i, .button-like-label i {
+    color: var(--cor-verde-neon); /* Ícones verdes por padrão */
+}
+
+button:hover, .button-like-label:hover {
+    background-color: var(--cor-roxo-claro);
+    color: var(--cor-cinza-escuro-2);
+    border-color: var(--cor-roxo-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(189, 147, 249, 0.3); /* Sombra roxa suave */
+}
+/* Cor do ícone no hover */
+button:hover i, .button-like-label:hover i {
+    color: var(--cor-cinza-escuro-2);
+}
+
+
+button:active, .button-like-label:active {
+    transform: scale(0.98) translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Estado Desabilitado */
+button:disabled, button[disabled], .button-like-label[disabled] {
+    background-color: var(--cor-fundo-desabilitado) !important;
+    color: var(--cor-texto-desabilitado) !important;
+    border-color: var(--cor-cinza-escuro-1) !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+button:disabled i, .button-like-label[disabled] i {
+    color: var(--cor-texto-desabilitado) !important;
+}
+
+
+/* Botão de Ferramenta Ativa */
+button.active-tool {
+    background-color: var(--cor-verde-neon);
+    color: var(--cor-cinza-escuro-2);
+    border-color: var(--cor-verde-neon);
+    box-shadow: 0 0 10px var(--cor-verde-neon), inset 0 1px 3px rgba(0,0,0,0.3);
+}
+button.active-tool i {
+    color: var(--cor-cinza-escuro-2);
+}
+
+/* Botões iniciais (Escolher/Tela Branca) & Links Úteis (Tutorial/4U) */
+.start-options-container,
+.links-uteis-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+.start-options-container > .button-like-label,
+.start-options-container > button,
+.links-uteis-container > .button-like-label {
+    margin: 0;
+    flex-grow: 1;
+    flex-basis: 0; /* Força divisão igual do espaço */
+    min-width: 150px; /* Evita que fiquem muito estreitos */
+    border-color: var(--cor-ciano-neon); /* Cor Ciano para destaque */
+}
+.start-options-container > .button-like-label i,
+.start-options-container > button i,
+.links-uteis-container > .button-like-label i {
+     color: var(--cor-ciano-neon);
+}
+.start-options-container > .button-like-label:hover,
+.start-options-container > button:hover,
+.links-uteis-container > .button-like-label:hover {
+     background-color: var(--cor-ciano-neon);
+     border-color: var(--cor-ciano-neon);
+     color: var(--cor-cinza-escuro-2);
+     box-shadow: 0 4px 8px rgba(139, 233, 253, 0.3); /* Sombra Ciano */
+}
+.start-options-container > .button-like-label:hover i,
+.start-options-container > button:hover i,
+.links-uteis-container > .button-like-label:hover i {
+    color: var(--cor-cinza-escuro-2);
+}
+
+/* Sliders */
+input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+    accent-color: var(--cor-rosa-neon); /* Cor de preenchimento moderna */
+    background: transparent; /* Remove fundo padrão */
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px; /* Altura total da área do slider */
+    border-radius: 4px;
+    outline: none;
+}
+/* Track (Trilho) */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: var(--cor-cinza-escuro-1);
+    border-radius: 3px;
+    border: 1px solid var(--cor-cinza-escuro-2);
+}
+input[type="range"]::-moz-range-track {
+    height: 6px;
+    background: var(--cor-cinza-escuro-1);
+    border-radius: 3px;
+    border: 1px solid var(--cor-cinza-escuro-2);
+}
+/* Thumb (Botão Deslizante) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--cor-rosa-neon);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--cor-cinza-escuro-2);
+    box-shadow: 0 1px 3px rgba(255, 121, 198, 0.5); /* Sombra rosa */
+    margin-top: -7px; /* Alinha verticalmente com o track */
+}
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--cor-rosa-neon);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--cor-cinza-escuro-2);
+    box-shadow: 0 1px 3px rgba(255, 121, 198, 0.5);
+}
+/* Thumb Desabilitado */
+input[type="range"]:disabled::-webkit-slider-thumb {
+    background: var(--cor-texto-desabilitado);
+    box-shadow: none; border: none;
+}
+input[type="range"]:disabled::-moz-range-thumb {
+    background: var(--cor-texto-desabilitado);
+    box-shadow: none; border: none;
+}
+input[type="range"]:disabled::-webkit-slider-runnable-track,
+input[type="range"]:disabled::-moz-range-track {
+    background: var(--cor-fundo-desabilitado);
+}
+
+
+/* Labels e Spans de Valor */
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9em;
+    color: var(--cor-texto-secundario);
+    font-weight: 500;
+}
+.value-span {
+    font-weight: bold;
+    color: var(--cor-amarelo-claro);
+    background-color: var(--cor-cinza-escuro-1);
+    padding: 3px 7px;
+    border-radius: 4px;
+    display: inline-block;
+    min-width: 35px;
+    text-align: center;
+    font-size: 0.9em;
+    margin-left: 5px;
+    border: 1px solid var(--cor-borda-input);
+}
+label span#fileSizeEstimate {
+    font-weight: normal;
+    color: var(--cor-texto-secundario);
+    font-size: 0.85em;
+    margin-left: 5px;
+}
+label.disabled {
+    color: var(--cor-texto-desabilitado);
+}
+
+/* Checkbox */
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0.6rem 0;
+    font-size: 0.95em;
+    position: relative;
+    padding-left: 2rem; /* Espaço para o checkmark customizado */
+    user-select: none;
+    width: fit-content;
+    margin-right: 0.5rem;
+    color: var(--cor-texto-padrao);
+}
+.checkbox-label input[type="checkbox"] {
+    position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 2px; left: 0;
+    height: 18px; width: 18px;
+    background-color: var(--cor-cinza-escuro-1);
+    border: 1px solid var(--cor-borda-input);
+    border-radius: 4px;
+    transition: var(--transicao-rapida);
+}
+.checkbox-label:hover .checkmark {
+    background-color: var(--cor-cinza-escuro-1);
+    border-color: var(--cor-roxo-claro); /* Borda roxa no hover */
+}
+.checkbox-label input:checked ~ .checkmark {
+    background-color: var(--cor-verde-neon);
+    border-color: var(--cor-verde-neon);
+}
+/* Estilo do "V" dentro do checkmark */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px; top: 2px;
+    width: 5px; height: 10px;
+    border: solid var(--cor-cinza-escuro-2); /* Cor do check escura */
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+.checkbox-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+/* Inputs Numéricos e de Texto */
+input[type="number"], input[type="text"] {
+    flex-grow: 1;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--cor-borda-input);
+    border-radius: 4px;
+    font-size: 0.9em;
+    width: 100%;
+    background-color: var(--cor-cinza-escuro-1);
+    color: var(--cor-texto-padrao);
+    transition: border-color 0.2s ease;
+}
+input[type="number"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--cor-verde-neon); /* Borda verde neon no focus */
+    box-shadow: 0 0 5px rgba(80, 250, 123, 0.3); /* Sombra verde neon */
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; margin: 0;
+}
+input[type=number] { -moz-appearance: textfield; } /* Firefox */
+input::placeholder { color: var(--cor-texto-secundario); opacity: 0.7; }
+
+
+/* Grupo de inputs para redimensionamento */
+.resize-inputs-container { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 0.8rem; }
+.resize-input-group { display: flex; align-items: center; gap: 0.5rem; }
+.resize-input-group label { margin-bottom: 0; flex-basis: 90px; flex-shrink: 0; text-align: right; color: var(--cor-texto-padrao); }
+
+/* Select (Dropdown) */
+select {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--cor-roxo-claro); /* Borda roxa */
+    border-radius: var(--border-radius-padrao);
+    font-size: 0.95em;
+    background-color: var(--cor-cinza-escuro-1);
+    color: var(--cor-texto-padrao);
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    /* Ícone da seta customizado para tema escuro (SVG embutido) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23bd93f9' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1em;
+    transition: border-color 0.2s ease;
+}
+select:focus {
+    outline: none;
+    border-color: var(--cor-verde-neon);
+    box-shadow: 0 0 5px rgba(80, 250, 123, 0.3);
+}
+
+/* Input de Cor */
+input[type="color"] {
+    -webkit-appearance: none; -moz-appearance: none; appearance: none;
+    width: 40px; height: 30px; /* Tamanho ajustado */
+    background-color: transparent; /* Fundo transparente */
+    border: 1px solid var(--cor-borda-input);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 2px; /* Padding interno */
+    overflow: hidden;
+    margin: 0 0.2rem;
+    vertical-align: middle; /* Alinha com o texto/label */
+}
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+input[type="color"]::-webkit-color-swatch { border: none; border-radius: 2px; }
+input[type="color"]::-moz-color-swatch { border: none; border-radius: 2px; }
+
+
+/* Container para ferramentas (layout em grid) */
+.main-tool-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--cor-cinza-escuro-1);
+}
+.main-tool-buttons > button,
+.main-tool-buttons > .button-like-label {
+    width: 100%; margin: 0;
+    /* Usar cores diferentes para tipos de ferramenta */
+}
+.main-tool-buttons #addTextBtn, .main-tool-buttons #addEmojiBtn { border-color: var(--cor-verde-neon); }
+.main-tool-buttons #addTextBtn i, .main-tool-buttons #addEmojiBtn i { color: var(--cor-verde-neon); }
+.main-tool-buttons label[for="imageOverlayLoader"] { border-color: var(--cor-laranja-neon); }
+.main-tool-buttons label[for="imageOverlayLoader"] i { color: var(--cor-laranja-neon); }
+.main-tool-buttons #eraserToolBtn { border-color: var(--cor-rosa-neon); }
+.main-tool-buttons #eraserToolBtn i { color: var(--cor-rosa-neon); }
+/* Botões de Desenho */
+.main-tool-buttons #penToolBtn, .main-tool-buttons #lineToolBtn,
+.main-tool-buttons #arrowToolBtn, .main-tool-buttons #rectToolBtn,
+.main-tool-buttons #circleToolBtn { border-color: var(--cor-ciano-neon); }
+.main-tool-buttons #penToolBtn i, .main-tool-buttons #lineToolBtn i,
+.main-tool-buttons #arrowToolBtn i, .main-tool-buttons #rectToolBtn i,
+.main-tool-buttons #circleToolBtn i { color: var(--cor-ciano-neon); }
+/* Botão de Seleção */
+.main-tool-buttons #selectToolBtn { border-color: var(--cor-amarelo-claro); }
+.main-tool-buttons #selectToolBtn i { color: var(--cor-amarelo-claro); }
+
+/* Controles comuns (Cor, Espessura) */
+#shapePenTextControls .tool-container {
+    display: flex; align-items: center; gap: 0.8rem; margin-top: 0.5rem; flex-wrap: wrap;
+}
+#shapePenTextControls .tool-container label { margin-bottom: 0; font-size: 0.9em; }
+#shapePenTextControls #lineWidthLabel { margin-left: auto; }
+
+/* Container Conta-Gotas */
+.eyedropper-container { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.8rem; flex-wrap: wrap;}
+.eyedropper-container input[type="text"] {
+    flex-grow: 0; flex-shrink: 0; width: 90px; padding: 0.4rem 0.6rem; /* Aumenta padding */
+    border: 1px solid var(--cor-ciano-neon); /* Borda Ciano */
+    background-color: var(--cor-cinza-escuro-2); /* Fundo bem escuro */
+    color: var(--cor-ciano-neon); /* Cor do texto Ciano */
+    font-family: monospace; text-align: center;
+}
+.eyedropper-container button { /* Botão Copiar */
+    min-width: auto; padding: 0.4rem 0.7rem;
+    background-color: var(--cor-ciano-neon); /* Fundo Ciano */
+    color: var(--cor-cinza-escuro-2); /* Texto Escuro */
+    font-size: 0.85em; margin: 0; border: none;
+}
+.eyedropper-container button i { color: var(--cor-cinza-escuro-2); } /* Ícone Escuro */
+.eyedropper-container button:hover {
+    background-color: #a7f3ff; /* Ciano mais claro */
+    color: var(--cor-cinza-escuro-2);
+    box-shadow: 0 2px 4px rgba(139, 233, 253, 0.4);
+}
+#eyedropperPreview {
+    width: 26px; height: 26px; border-radius: 4px;
+    border: 1px solid var(--cor-ciano-neon);
+    display: inline-block; vertical-align: middle; background-color: transparent;
+    margin-right: 0.3rem; background-image: none;
+    /* Fundo quadriculado para transparência */
+    background-image: linear-gradient(45deg, #44475a 25%, transparent 25%), linear-gradient(-45deg, #44475a 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #44475a 75%), linear-gradient(-45deg, transparent 75%, #44475a 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+}
+#eyedropperPreview[style*="background-color: rgb"] { background-image: none; } /* Remove xadrez se cor sólida */
+
+/* Grid de Transformações (Rotação/Espelhamento) */
+.transform-buttons-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
+    margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--cor-cinza-escuro-1);
+}
+.transform-column { display: flex; flex-direction: column; gap: 0.5rem; }
+.transform-column button {
+    width: 100%; margin: 0;
+    border-color: var(--cor-laranja-neon); /* Laranja para transformações */
+}
+.transform-column button i { color: var(--cor-laranja-neon); }
+.transform-column button:hover {
+    background-color: var(--cor-laranja-neon);
+    border-color: var(--cor-laranja-neon);
+    color: var(--cor-cinza-escuro-2);
+    box-shadow: 0 4px 8px rgba(255, 184, 108, 0.3);
+}
+.transform-column button:hover i { color: var(--cor-cinza-escuro-2); }
+
+/* Download Section */
+.download-options { margin-bottom: 1rem; }
+.download-options label { margin-bottom: 0.5rem; }
+.download-options select { margin-bottom: 0.5rem; }
+.info-text { font-size: 0.85em; color: var(--cor-texto-secundario); margin-top: 0.5rem; line-height: 1.4; }
+.info-text strong { color: var(--cor-texto-padrao); font-weight: 600; }
+
+
+/* Canvas e Cursores */
+#imageCanvas {
+    display: block; max-width: none; max-height: none; object-fit: contain;
+    background-color: transparent;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+    border: none;
+    /* Fundo quadriculado claro/escuro para contraste no tema escuro */
+    background-image: linear-gradient(45deg, var(--cor-cinza-escuro-1) 25%, transparent 25%), linear-gradient(-45deg, var(--cor-cinza-escuro-1) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--cor-cinza-escuro-1) 75%), linear-gradient(-45deg, transparent 75%, var(--cor-cinza-escuro-1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    position: relative; z-index: 1;
+}
+/* Canvas Temporário (Desenho/Preview) */
+#tempCanvas {
+    position: absolute; pointer-events: none; display: none; z-index: 2; background: transparent;
+}
+/* Overlay de Corte */
+#cropOverlay {
+    position: absolute; pointer-events: none; display: none; z-index: 10;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.75); /* Fundo mais opaco */
+    border: 1.5px dashed var(--cor-verde-neon); /* Borda verde neon tracejada */
+}
+
+/* Estilos de Cursor (Usando Classes) */
+.default-cursor { cursor: default; }
+.crosshair-cursor { cursor: crosshair; }
+.nwse-resize-cursor { cursor: nwse-resize; }
+.move-cursor { cursor: move; }
+.grabbing { cursor: grabbing; }
+.grab-cursor { cursor: grab; }
+.pointer-cursor { cursor: pointer; }
+.eyedropper-cursor { cursor: copy; }
+.pen-cursor { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewport='0 0 20 20' style='fill:%2350fa7b; stroke:white; stroke-width:1px;'><path d='M14.1,2.9C13.9,2.7,13.7,2.6,13.4,2.6c-0.3,0-0.5,0.1-0.7,0.3L3.7,11.9c-0.1,0.1-0.1,0.2-0.2,0.3c0,0.1-0.1,0.3-0.1,0.4 l-1,4c-0.1,0.3,0,0.6,0.2,0.8C2.9,17.6,3,17.7,3.2,17.7c0.1,0,0.1,0,0.2,0l4-1c0.1,0,0.3-0.1,0.4-0.1c0.1-0.1,0.2-0.1,0.3-0.2 l9.1-9.1c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7L14.1,2.9z M12.7,4.7l1.6,1.6L6.1,14.5l-2.2,0.5l0.5-2.2L12.7,4.7z M14.8,5.4l-0.9-0.9L15,3.4l0.9,0.9L14.8,5.4z'/></svg>") 0 20, crosshair; } /* Caneta verde neon */
+.eraser-cursor { cursor: crosshair; } /* Simples crosshair para borracha */
+
+/* Pré-visualização de Imagem (Painel) */
+.preview-container { margin-top: 1rem; }
+.preview-container p { margin-bottom: 0.5rem; font-weight: 600; color: var(--cor-texto-secundario); }
+.preview-container img {
+    border: 1px solid var(--cor-cinza-escuro-1);
+    padding: 4px;
+    background-color: var(--cor-cinza-escuro-2);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    max-width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: block; /* Garante que não haja espaço extra abaixo */
+}
+
+
+/* --- Modal de Emojis/Figurinhas --- */
+.modal-backdrop {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); z-index: 99; animation: fadeIn 0.3s ease-out;
+}
+.modal {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background-color: var(--cor-cinza-escuro-2);
+    padding: 1.8rem;
+    border-radius: var(--border-radius-padrao);
+    border: 1px solid var(--cor-roxo-claro);
+    box-shadow: var(--sombra-padrao);
+    z-index: 100;
+    max-width: 90%; width: 520px; max-height: 85vh;
+    display: none; /* Inicialmente oculto */
+    flex-direction: column;
+    animation: scaleIn 0.3s ease-out forwards;
+}
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.2rem; padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--cor-cinza-escuro-1); flex-shrink: 0;
+}
+.modal-header h3 {
+    margin: 0; font-size: 1.25em; color: var(--cor-roxo-claro);
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+}
+.modal-close-btn {
+    background: none; border: none; font-size: 2em;
+    color: var(--cor-texto-secundario); cursor: pointer; line-height: 1; padding: 0 0.3rem;
+    transition: color 0.2s ease;
+}
+.modal-close-btn:hover { color: var(--cor-rosa-neon); }
+/* Grid de Emojis */
+#emojiGrid {
+    flex-grow: 1; overflow-y: auto; display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    gap: 0.8rem; justify-content: center;
+    padding: 0.5rem; /* Padding interno da grid */
+    margin-right: -10px; /* Compensa padding scrollbar */
+    padding-right: 10px;
+}
+.emoji-grid button {
+    background: var(--cor-cinza-escuro-1); /* Fundo sutil */
+    border: 1px solid transparent; /* Borda invisível para manter tamanho */
+    font-size: 1.9em; padding: 0.3rem; cursor: pointer;
+    border-radius: 4px; transition: var(--transicao-rapida);
+    line-height: 1; color: var(--cor-texto-padrao);
+}
+.emoji-grid button:hover {
+    background-color: var(--cor-cinza-escuro-1);
+    border-color: var(--cor-verde-neon);
+    transform: scale(1.1);
+}
+
+
+/* --- Animações Simples --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(80, 250, 123, 0.5); } 70% { transform: scale(1.02); box-shadow: 0 0 5px 10px rgba(80, 250, 123, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(80, 250, 123, 0); } }
+
+
+/* --- ESTILOS DA PÁGINA DE TUTORIAL (tutorial.html) --- */
+
+/* Cabeçalho específico do tutorial */
+.tutorial-header {
+    background: linear-gradient(135deg, var(--cor-fundo-principal-inicio), var(--cor-fundo-principal-fim));
+    color: var(--cor-texto-cabecalho);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 3px solid var(--cor-roxo-claro);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.tutorial-header h1 {
+    font-family: 'Orbitron', sans-serif; /* Fonte Orbitron para título */
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    text-shadow: 0 0 8px var(--cor-rosa-neon);
+    display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+}
+.tutorial-header h1 i {
+    color: var(--cor-rosa-neon); /* Ícone Rosa */
+    margin-right: 0.3rem; font-size: 0.9em;
+}
+.tutorial-header p {
+    font-size: 1.1rem;
+    max-width: 800px; margin: 0 auto; font-weight: 300;
+    color: var(--cor-texto-secundario); margin-bottom: 0;
+}
+
+/* Container Principal do Tutorial */
+.tutorial-main {
+    max-width: 900px;
+    margin: 2rem auto; /* Centraliza */
+    padding: 0 1rem;   /* Espaçamento lateral */
+    flex-grow: 1; /* Ocupa espaço disponível */
+}
+
+/* Seção de conteúdo dentro do main */
+.tutorial-section {
+    background-color: var(--cor-container-fundo); /* Fundo escuro semi-transparente */
+    padding: 2.5rem 3rem; /* Mais padding interno */
+    margin-bottom: 2.5rem;
+    border-radius: var(--border-radius-padrao);
+    border: 1px solid var(--cor-container-borda); /* Borda Roxo claro */
+    box-shadow: var(--sombra-padrao);
+}
+
+/* Títulos H2 e H3 */
+.tutorial-section h2, .tutorial-section h3 {
+    color: var(--cor-roxo-claro); /* Roxo para títulos principais */
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif; /* Poppins mais pesado */
+    font-weight: 600;
+    display: flex; /* Para alinhar ícone */
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.tutorial-section h2 {
+    font-size: 1.7em;
+    margin-top: 3rem; /* Mais espaço acima */
+    border-bottom: 1px solid var(--cor-cinza-escuro-1);
+    padding-bottom: 0.7rem;
+}
+.tutorial-section h2:first-of-type { margin-top: 0; }
+
+/* Estilo H2 específico do Índice */
+#indice-titulo {
+    border-bottom: none; margin-bottom: 1rem; margin-top: 0;
+    font-size: 1.5em; text-align: center; color: var(--cor-ciano-neon); /* Ciano para Índice */
+}
+#indice-titulo i { color: var(--cor-ciano-neon); }
+
+/* Títulos H3 (Subseção) */
+.tutorial-section h3 {
+    font-size: 1.4em;
+    margin-top: 2rem;
+    color: var(--cor-verde-neon); /* Verde Neon para H3 */
+    border-bottom: none; padding-bottom: 0;
+}
+.tutorial-section h3 i { color: var(--cor-verde-neon); }
+
+/* Ícones gerais no tutorial (em P, LI, A) */
+.tutorial-section p i, .tutorial-section li i, .tutorial-section a i {
+    color: var(--cor-ciano-neon); /* Ícones Ciano */
+    margin-right: 0.5rem; width: 1.2em; text-align: center; vertical-align: middle;
+    font-size: 0.95em;
+}
+
+/* Parágrafos e Listas */
+.tutorial-section p, .tutorial-section ul, .tutorial-section ol {
+    margin-bottom: 1rem; color: var(--cor-texto-padrao);
+}
+.tutorial-section ul, .tutorial-section ol { padding-left: 1.8rem; }
+.tutorial-section li { margin-bottom: 0.7rem; padding-left: 0.5rem; }
+
+/* Lista específica do Índice (TOC) */
+.tutorial-section ul.table-of-contents {
+    list-style: none; padding: 1.5rem 2rem; margin-bottom: 2rem;
+    border: 1px solid var(--cor-cinza-escuro-1);
+    border-radius: 6px; background-color: rgba(40, 42, 54, 0.5); /* Fundo ligeiramente mais escuro */
+}
+.tutorial-section ul.table-of-contents li { margin-bottom: 0.6rem; }
+.tutorial-section ul.table-of-contents li:last-child { margin-bottom: 0; }
+.tutorial-section ul.table-of-contents li a {
+    text-decoration: none; color: var(--cor-texto-padrao); font-weight: 500;
+    display: flex; align-items: center; gap: 0.6rem; transition: color 0.2s ease;
+}
+.tutorial-section ul.table-of-contents li a:hover { color: var(--cor-verde-neon); }
+.tutorial-section ul.table-of-contents li a i {
+    color: var(--cor-ciano-neon); width: 1.1em; text-align: center;
+    transition: color 0.2s ease; margin-right: 0;
+}
+.tutorial-section ul.table-of-contents li a:hover i { color: var(--cor-verde-neon); }
+
+/* Links gerais no tutorial */
+.tutorial-section a {
+    color: var(--cor-rosa-neon); /* Rosa Neon para links */
+    text-decoration: none; font-weight: 500; transition: color 0.2s ease;
+}
+.tutorial-section a:hover { color: var(--cor-verde-neon); text-decoration: underline; }
+
+/* Link "Voltar ao Índice" */
+.tutorial-section .back-to-top {
+    text-align: right; margin-top: 2rem; margin-bottom: 0.5rem;
+}
+.tutorial-section .back-to-top a {
+    font-size: 0.9em; color: var(--cor-texto-secundario); font-weight: 400; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s ease;
+}
+.tutorial-section .back-to-top a:hover { color: var(--cor-verde-neon); text-decoration: underline; }
+.tutorial-section .back-to-top a i { color: inherit; font-size: 0.9em; margin-right: 0; }
+
+/* Ênfase (Strong) e Código */
+.tutorial-section strong { color: var(--cor-amarelo-claro); font-weight: 600; }
+/* Adicionar estilo para `code` ou `pre` se necessário */
+
+/* Linha Horizontal (HR) */
+.tutorial-section hr {
+    border: none; border-top: 1px dashed var(--cor-cinza-escuro-1); margin: 2.5rem 0;
+}
+.tutorial-section hr.toc-separator {
+    margin-top: 0; margin-bottom: 2.5rem; border-top: 1px solid var(--cor-roxo-claro); /* Separador roxo */
+}
+
+/* Blocos de Aviso/Alerta */
+.warning {
+    background-color: rgba(70, 70, 50, 0.7); /* Fundo amarelo escuro semi-transparente */
+    border: 1px solid var(--cor-amarelo-claro); /* Borda amarela */
+    color: var(--cor-amarelo-claro);
+    padding: 1rem 1.5rem; border-radius: 6px; margin: 1rem 0;
+    display: flex; align-items: flex-start; gap: 0.8rem;
+}
+.warning strong { color: #f5d972; } /* Amarelo mais brilhante para o strong */
+.warning i { color: var(--cor-laranja-neon); margin-top: 0.2em; flex-shrink: 0; }
+
+
+/* --- ESTILOS DO RODAPÉ PADRÃO (Aplicado a ambas as páginas) --- */
+.site-footer {
+    flex-shrink: 0; /* Mantém no fim da página */
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem; /* Espaço acima do rodapé */
+    background-color: var(--cor-cinza-escuro-2);
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--cor-cinza-escuro-1);
+}
+
+.footer-links {
+    margin-bottom: 0.8rem; /* Espaço entre links e copyright */
+    display: flex; /* Para espaçamento e alinhamento */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 0.5rem 0.8rem; /* Espaçamento vertical e horizontal */
+}
+
+.site-footer a {
+    color: var(--cor-ciano-neon); /* Links ciano */
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500; /* Um pouco mais de peso */
+    margin: 0 5px;
+}
+
+.site-footer a:hover {
+    color: var(--cor-verde-neon); /* Hover verde neon */
+    text-decoration: underline;
+}
+
+/* Separador "|" entre links */
+.site-footer span {
+    margin: 0 5px;
+    color: var(--cor-cinza-escuro-1); /* Separador escuro */
+    user-select: none; /* Não selecionável */
+}
+
+.copyright {
+    color: var(--cor-texto-secundario);
+    font-size: 0.85em;
+}
+
+.copyright .geek, .copyright .code {
+    font-weight: normal; /* Fonte normal no copyright */
+}
+
+/* --- RESPONSIVIDADE (Ajustes para Telas Menores) --- */
+
+@media (max-width: 900px) { /* Quando painel vai para cima */
+    body { overflow: auto; } /* Permite scroll no body */
+    .editor-container {
+        flex-direction: column; height: auto;
+        overflow: visible; /* Remove overflow do container principal */
+    }
+    .controls-panel {
+        width: 100%; height: auto;
+        max-height: 65vh; /* Limita altura do painel */
+        border-right: none;
+        border-bottom: 2px solid var(--cor-roxo-claro);
+        overflow-y: auto; /* Garante scroll se necessário */
+    }
+    .main-content-area { height: auto; flex-grow: 1; /* Ocupa o resto */ }
+    .canvas-area {
+        min-height: 40vh; /* Garante área mínima para canvas */
+        flex-grow: 1; padding: 1rem;
+        height: calc(100vh - 65vh - 50px - 60px); /* Calcula altura restante aprox */
+    }
+    .action-buttons-footer { padding: 0.7rem 1rem; }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    /* Ajustes gerais para tablets */
+    .controls-panel { padding: 1.2rem; }
+    .tutorial-header { padding: 3rem 1rem; }
+    .tutorial-header h1 { font-size: 2rem; }
+    .tutorial-main { padding: 0 1rem; }
+    .tutorial-section { padding: 2rem; } /* Reduz padding da seção tutorial */
+    .tutorial-section h2 { font-size: 1.5em; margin-top: 2.5rem; }
+    .tutorial-section h3 { font-size: 1.3em; margin-top: 1.8rem;}
+}
+
+@media (max-width: 480px) {
+    html { font-size: 14px; }
+    /* Ajustes finos para mobile */
+    .controls-panel { padding: 1rem; max-height: 70vh; /* Aumenta um pouco se necessário */ }
+    .controls-panel h1 { font-size: 1.4em; margin-bottom: 1rem; }
+
+    /* Botões com largura total */
+    #rotateLeft, #rotateRight, #flipHorizontal, #flipVertical,
+    #resizeBtn, #downloadBtn, #addTextBtn, #addEmojiBtn,
+    #eyedropperBtn, #eraserToolBtn, label[for="imageOverlayLoader"],
+    #penToolBtn, #lineToolBtn, #arrowToolBtn, #rectToolBtn,
+    #circleToolBtn, #selectToolBtn,
+    .start-options-container > .button-like-label,
+    .start-options-container > button,
+    .links-uteis-container > .button-like-label,
+    .transform-column button /* Inclui botões de transformação */
+    {
+        width: 100%; margin: 0; /* Largura total, remove margem individual */
+    }
+
+    /* Containers grid passam para 1 coluna */
+    .transform-buttons-grid,
+    .main-tool-buttons {
+        grid-template-columns: 1fr; /* Coluna única */
+        gap: 0.6rem; /* Espaçamento menor */
+        border-bottom: none; padding-bottom: 0.5rem;
+    }
+    .start-options-container,
+    .links-uteis-container {
+        flex-direction: column; /* Empilha botões */
+        gap: 0.5rem;
+    }
+     .start-options-container > *,
+     .links-uteis-container > * {
+         min-width: unset; /* Remove largura mínima */
+     }
+
+    .resize-inputs-container { gap: 0.6rem; }
+    .resize-input-group { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+    .resize-input-group label { flex-basis: auto; text-align: left; margin-bottom: 0.2rem; }
+
+    .action-buttons-footer .action-buttons-container { gap: 0.5rem; }
+    .action-buttons-footer .action-buttons-container button {
+        width: calc(33% - 0.4rem); /* Tenta manter 3 por linha */
+        min-width: auto;
+        font-size: 0.85em;
+        padding: 0.5rem 0.6rem; /* Padding menor */
+        gap: 0.4rem; /* Menos gap interno */
+    }
+    .action-buttons-footer .action-buttons-container button i {
+        font-size: 0.9em; /* Ícone um pouco menor */
+        margin-right: 0; /* Remove margem se o texto for quebrado */
+    }
+
+    .modal { width: 95%; padding: 1.2rem; max-height: 90vh;}
+    .modal-header h3 { font-size: 1.15em;}
+    .modal-close-btn { font-size: 1.7em; }
+    #emojiGrid { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 0.5rem; padding-right: 5px; }
+    .emoji-grid button { font-size: 1.8em;}
+
+    select { background-position: right 0.5rem center; padding: 0.6rem 0.8rem; }
+    .checkbox-label { padding-left: 2.3rem; }
+
+    /* Tutorial Mobile */
+    .tutorial-header { padding: 2.5rem 1rem; }
+    .tutorial-header h1 { font-size: 1.8rem; }
+    .tutorial-section { padding: 1.5rem 1rem; } /* Mais redução de padding */
+    .tutorial-section h2 { font-size: 1.4em; gap: 0.5rem;}
+    .tutorial-section h3 { font-size: 1.2em; gap: 0.4rem;}
+    .tutorial-section ul, .tutorial-section ol { padding-left: 1.5rem; }
+    .tutorial-section ul.table-of-contents { padding: 1rem 1.2rem; }
+    .tutorial-section .back-to-top { text-align: center; }
+
+    /* Rodapé Mobile */
+    .site-footer { padding: 1rem; }
+    .footer-links { gap: 0.3rem 0.5rem; font-size: 0.9em;}
+    .footer-links a, .site-footer span { margin: 0 3px; }
+}
+
+/* --- FIM DO CSS --- */

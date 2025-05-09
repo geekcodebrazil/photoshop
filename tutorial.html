@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Completo: PhotoShop Fácil</title>
+    <!-- Importa Font Awesome (Necessário para ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Importa o CSS externo -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Não há mais <style> inline -->
+</head>
+<body>
+
+    <!-- Cabeçalho Específico do Tutorial -->
+    <header class="tutorial-header">
+        <h1><i class="fas fa-paint-brush"></i>Tutorial Completo: <span class="geek">Photo</span><span class="code">Shop</span> Fácil</h1>
+        <p>Aprenda a usar nosso editor de imagens online passo a passo.</p>
+    </header>
+
+    <!-- Container Principal do Conteúdo -->
+    <main class="tutorial-main">
+        <!-- Seção de Conteúdo Tutorial -->
+        <section class="tutorial-section">
+
+            <!-- Índice -->
+            <h2 id="indice-titulo"><i class="fas fa-list-ul"></i>Índice Rápido</h2>
+            <ul class="table-of-contents">
+                <li><a href="#interface"><i class="fas fa-desktop"></i> Interface Principal</a></li>
+                <li><a href="#comecando"><i class="fas fa-play-circle"></i> Começando: Carregar ou Criar</a></li>
+                <li><a href="#controles"><i class="fas fa-tools"></i> Painel de Controles: Funções</a></li>
+                <li><a href="#rodape-acoes"><i class="fas fa-history"></i> Rodapé de Ações (Desfazer/Refazer)</a></li>
+                <li><a href="#dicas"><i class="fas fa-lightbulb"></i> Dicas Importantes</a></li>
+            </ul>
+            <hr class="toc-separator">
+            <!-- Fim do Índice -->
+
+            <!-- Introdução -->
+            <p>Bem-vindo ao <strong><span class="geek">Photo</span><span class="code">Shop</span> Fácil</strong>! Este é um editor de imagens online intuitivo e direto ao ponto, criado para edições rápidas, adição de elementos e exportação simplificada. Este guia detalha cada ferramenta e funcionalidade disponível.</p>
+
+            <!-- Seção: Interface Principal -->
+            <h2 id="interface"><i class="fas fa-desktop"></i>Interface Principal</h2>
+            <p>A interface do editor é dividida em três áreas principais:</p>
+            <ol>
+                <li><i class="fas fa-cogs"></i><strong>Painel de Controles (Esquerda/Topo em mobile):</strong> Concentra todas as ferramentas, ajustes e opções de exportação. É aqui que você seleciona o que fazer na imagem.</li>
+                <li><i class="fas fa-vector-square"></i><strong>Área do Canvas (Centro/Direita):</strong> Seu espaço de trabalho principal, onde a imagem é exibida e editada. Permite zoom (scroll do mouse ou pinça no touch) e navegação (arrastar com botão do meio/dois dedos ou barras de rolagem).</li>
+                <li><i class="fas fa-window-minimize"></i><strong>Rodapé de Ações (Abaixo do Canvas):</strong> Contém botões globais como Desfazer, Refazer, Resetar e Deletar Camada.</li>
+            </ol>
+            <p class="back-to-top"><a href="#indice-titulo"><i class="fas fa-arrow-up"></i> Voltar ao Índice</a></p>
+
+            <!-- Seção: Começando -->
+            <h2 id="comecando"><i class="fas fa-play-circle"></i>Começando: Carregar Imagem ou Criar Tela</h2>
+            <p>Ao abrir o editor, você inicia pela seção <strong><i class="fas fa-image"></i> Imagem Principal</strong> com duas opções:</p>
+            <ul>
+                <li>
+                    <i class="fas fa-upload"></i><strong>Escolher Imagem:</strong> Clique para abrir o seletor de arquivos do seu dispositivo. Formatos aceitos: JPG, PNG, WEBP.
+                    <ul>
+                        <li>Após selecionar, a imagem aparece no Canvas e uma miniatura na pré-visualização. Os controles de edição são habilitados.</li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="far fa-file-alt"></i><strong>Tela em Branco:</strong> Clique para criar uma área de trabalho vazia (padrão 800x400px, redimensionável). Ideal para criar do zero, colagens ou desenhos.
+                    <ul>
+                        <li>Uma tela com fundo quadriculado (indicando transparência) surge no Canvas, ativando os controles de edição.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="back-to-top"><a href="#indice-titulo"><i class="fas fa-arrow-up"></i> Voltar ao Índice</a></p>
+
+            <!-- Seção: Painel de Controles Detalhado -->
+            <h2 id="controles"><i class="fas fa-tools"></i>Painel de Controles: Ferramentas Detalhadas</h2>
+            <p>Com uma imagem carregada ou tela criada, as seguintes seções de controles ficam disponíveis:</p>
+
+            <!-- Subseção: Ajustes e Cores -->
+            <h3><i class="fas fa-sliders-h"></i>Ajustes, Cores e Funções Gerais</h3>
+            <p>Controles para a aparência geral da imagem base e ferramentas utilitárias.</p>
+            <ul>
+                <li><i class="fas fa-sun"></i><strong>Brilho / Contraste:</strong> Deslize os controles para ajustar a luminosidade e a diferença entre tons claros e escuros da imagem <strong>principal</strong>.</li>
+                <li><i class="fas fa-ghost"></i><strong>Transparência Principal:</strong> Controla a opacidade (0% a 100%) da imagem <strong>base</strong> carregada.</li>
+                <li><i class="fas fa-layer-group"></i><strong>Transparência Camada:</strong> (Ativo apenas com camada selecionada). Controla a opacidade (0% a 100%) <strong>apenas</strong> do item selecionado (texto, forma, imagem sobreposta).</li>
+                <li><i class="fas fa-search-plus"></i><strong>Escala Principal:</strong> Aumenta ou diminui o <strong>zoom visual</strong> da imagem base no editor, sem alterar as dimensões reais para download.</li>
+                <li>
+                    <i class="fas fa-eye-dropper"></i><strong>Conta-Gotas:</strong>
+                    <ol>
+                        <li>Clique em "Ativar Conta-Gotas". O cursor vira um alvo/cópia.</li>
+                        <li>Clique em qualquer ponto do <strong>Canvas</strong>.</li>
+                        <li>A cor do pixel é mostrada na pré-visualização e seu código Hex aparece ao lado.</li>
+                        <li>Use o botão "Copiar" (<i class="fas fa-copy"></i>) para copiar o código Hex.</li>
+                        <li><em>Restrição:</em> Pode falhar em imagens de URLs externas devido a segurança (CORS).</li>
+                        <li>O modo desativa após o clique ou ao selecionar outra ferramenta.</li>
+                    </ol>
+                </li>
+                <li>
+                    <i class="fas fa-crop-alt"></i><strong>Cortar:</strong>
+                    <ol>
+                        <li>Clique em "Cortar". O cursor vira uma cruz (+).</li>
+                        <li>Clique e arraste no Canvas para definir a área a manter (retângulo tracejado).</li>
+                        <li>Clique em "Confirmar" (<i class="fas fa-check"></i>). A imagem será cortada, <strong>removendo todas as camadas</strong>. (Desfazer funciona).</li>
+                        <li>Clique em "Cancelar" (<i class="fas fa-times"></i>) para desistir antes de confirmar.</li>
+                    </ol>
+                </li>
+            </ul>
+
+            <!-- Subseção: Camadas e Ferramentas Criativas -->
+            <h3><i class="fas fa-magic"></i>Camadas e Ferramentas Criativas</h3>
+            <p>O coração da edição: filtros, transformações e adição de novos elementos.</p>
+            <ul>
+                <li><i class="fas fa-filter"></i><strong>Filtro Visual:</strong> Aplique efeitos pré-definidos (estilo Instagram) à imagem <strong>principal</strong>. "Nenhum Filtro" remove o efeito.</li>
+                <li>
+                    <i class="fas fa-sync-alt"></i><strong>Transformações (Layout 2x2):</strong> Afetam a imagem <strong>principal E todas as camadas juntas</strong>.
+                    <ul>
+                        <li><strong><i class="fas fa-undo"></i> Esquerda / <i class="fas fa-redo"></i> Direita:</strong> Gira 90 graus.</li>
+                        <li><strong><i class="fas fa-arrows-alt-h"></i> Horizontal / <i class="fas fa-arrows-alt-v"></i> Vertical:</strong> Espelha (inverte).</li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-plus-square"></i><strong>Adicionar Elementos e Ferramentas (Grid):</strong> Botões para criar novas camadas ou ativar ferramentas de desenho/seleção.
+                    <ul>
+                        <li><strong><i class="fas fa-font"></i> Texto:</strong> Adiciona um texto editável como nova camada.</li>
+                        <li><strong><i class="far fa-smile"></i> Figurinha:</strong> Abre um painel para escolher emojis/símbolos como novas camadas.</li>
+                        <li><strong><i class="fas fa-file-image"></i> Imagem:</strong> Carrega outra imagem (JPG, PNG, WEBP, GIF) como nova camada sobre a base.</li>
+                        <li><strong><i class="fas fa-eraser"></i> Borracha:</strong> Apaga <strong>apenas</strong> partes de formas desenhadas (linhas, retângulos, círculos, caneta). Não afeta imagem base, texto, emojis ou imagens sobrepostas.</li>
+                        <li><strong><i class="fas fa-pencil-alt"></i> Caneta:</strong> Desenho à mão livre. O traço vira uma camada ao soltar.</li>
+                        <li><strong><i class="fas fa-minus"></i> Linha / <i class="fas fa-long-arrow-alt-right"></i> Seta:</strong> Desenha linhas retas ou setas como camadas.</li>
+                        <li><strong><i class="far fa-square"></i> Retângulo / <i class="far fa-circle"></i> Círculo:</strong> Desenha formas geométricas como camadas.</li>
+                        <li>
+                            <strong><i class="fas fa-mouse-pointer"></i> Selecionar:</strong> Ferramenta <strong>padrão e essencial</strong> para interagir com camadas:
+                            <ul>
+                                <li><strong>Clique</strong> em uma camada para selecioná-la (aparece caixa de controle).</li>
+                                <li><strong>Arraste</strong> a camada selecionada para movê-la.</li>
+                                <li>Use os <strong>círculos nos cantos/topo</strong> da caixa para redimensionar/rotacionar a camada.</li>
+                                <li><strong>Clique fora</strong> para deselecionar.</li>
+                                <li>Arrastar com nada selecionado move a visualização do Canvas (pan).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-palette"></i><strong>Controles Comuns (Cor, Espessura, Preencher):</strong> Afetam as ferramentas de desenho e a camada <strong>selecionada</strong> (se aplicável).
+                    <ul>
+                        <li><strong>Cor (<i class="fas fa-palette"></i>):</strong> Define a cor para desenhar ou para a camada selecionada (texto, formas).</li>
+                        <li><strong>Espessura (<i class="fas fa-pen-nib"></i>):</strong> Define a espessura da linha/contorno para desenho ou para a forma selecionada.</li>
+                        <li><strong>Preencher Forma (<i class="fas fa-fill"></i>):</strong> (Visível para Retângulo/Círculo) Marca para desenhar/tornar a forma selecionada preenchida com a cor, em vez de só o contorno.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Subseção: Redimensionar -->
+            <h3><i class="fas fa-expand-arrows-alt"></i>Redimensionar Imagem Principal</h3>
+            <p>Altera as dimensões em pixels da imagem <strong>base</strong>.</p>
+            <ul>
+                <li><i class="fas fa-ruler-horizontal"></i>/<i class="fas fa-ruler-vertical"></i><strong>Largura (px) / Altura (px):</strong> Insira os novos valores. Deixar um vazio geralmente mantém a proporção se marcado abaixo.</li>
+                <li><i class="fas fa-link"></i><strong>Manter Proporção:</strong> Marcado por padrão. Garante que a imagem não seja distorcida ao alterar uma dimensão. Desmarque para definir livremente (pode distorcer).</li>
+                <li>
+                    <i class="fas fa-arrows-alt"></i><strong>Redimensionar Imagem (Botão):</strong> Aplica as novas dimensões.
+                    <div class="warning"> <!-- Aviso sobre redimensionamento -->
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Atenção Crítica:</strong> Redimensionar a imagem principal é uma ação <strong>destrutiva</strong>. Ela aplicará permanentemente todos os ajustes (brilho, contraste, filtros) feitos até o momento à imagem base e <strong>REMOVERÁ TODAS AS CAMADAS ADICIONADAS</strong> (texto, formas, emojis, imagens sobrepostas). Esta ação <strong>pode</strong> ser desfeita com o botão "Desfazer", mas esteja ciente das consequências.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+            <!-- Subseção: Download -->
+            <h3><i class="fas fa-download"></i>Download da Imagem Final</h3>
+            <p>Salva sua criação no seu dispositivo.</p>
+            <ul>
+                <li>
+                    <i class="far fa-file-alt"></i><strong>Formato:</strong> Escolha o tipo de arquivo:
+                    <ul>
+                        <li><strong>PNG:</strong> Ideal para gráficos, logos ou quando precisar de <strong>fundo transparente</strong>. Qualidade alta, arquivo maior.</li>
+                        <li><strong>JPEG (padrão):</strong> Ótimo para <strong>fotografias</strong>. <strong>Não</strong> suporta transparência (fundo fica branco). Permite compressão (arquivo menor).</li>
+                        <li><strong>WEBP:</strong> Formato moderno, suporta <strong>transparência</strong> e oferece boa compressão (arquivos menores que PNG/JPEG com qualidade similar). Ótima compatibilidade web.</li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fas fa-compress-arrows-alt"></i><strong>Compactar (JPEG/WEBP):</strong> (Visível apenas para JPEG/WEBP). Ajusta a qualidade vs. tamanho do arquivo. 100% é máxima qualidade/maior arquivo. Valores menores reduzem o tamanho (e podem reduzir a qualidade).
+                    <ul>
+                        <li><i class="fas fa-calculator"></i><strong>Estimativa de Tamanho:</strong> Mostra o tamanho aproximado do arquivo final com base na qualidade selecionada (atualiza com um pequeno atraso).</li>
+                    </ul>
+                </li>
+                <li><i class="fas fa-save"></i><strong>Baixar Imagem Final (Botão):</strong> Gera e inicia o download da imagem com as configurações escolhidas.</li>
+            </ul>
+            <p class="back-to-top"><a href="#indice-titulo"><i class="fas fa-arrow-up"></i> Voltar ao Índice</a></p>
+
+
+            <!-- Seção: Rodapé de Ações -->
+            <h2 id="rodape-acoes"><i class="fas fa-history"></i>Rodapé de Ações Globais</h2>
+            <p>Controles gerais localizados abaixo da área do canvas:</p>
+            <ul>
+                <li><i class="fas fa-undo"></i><strong>Desfazer:</strong> Reverte a última ação significativa (limite de ~30 ações). Fica desabilitado se não houver o que desfazer.</li>
+                <li><i class="fas fa-redo"></i><strong>Refazer:</strong> Re-aplica uma ação desfeita. Fica desabilitado se não houver o que refazer.</li>
+                <li><i class="fas fa-trash-alt"></i><strong>Resetar Tudo:</strong> Descarta <strong>TODAS</strong> as alterações, remove camadas e a imagem/tela, voltando ao estado inicial. Pede confirmação. <strong>Use com cautela!</strong></li>
+                <li><i class="fas fa-trash"></i><strong>Deletar Camada:</strong> Remove a camada <strong>atualmente selecionada</strong> no Canvas. Desabilitado se nada estiver selecionado. (Pode ser desfeito).</li>
+            </ul>
+            <p class="back-to-top"><a href="#indice-titulo"><i class="fas fa-arrow-up"></i> Voltar ao Índice</a></p>
+
+            <!-- Seção: Dicas -->
+            <h2 id="dicas"><i class="fas fa-lightbulb"></i>Dicas Importantes</h2>
+            <ul>
+                <li><i class="fas fa-check-circle"></i><strong>Entenda as Camadas:</strong> Pense nelas como folhas transparentes sobre sua foto. Texto, emojis, formas, imagens adicionadas ficam em camadas separadas. Você pode movê-las, redimensioná-las, mudar a opacidade ou excluí-las independentemente, sem afetar a imagem base ou outras camadas.</li>
+                <li><i class="fas fa-check-circle"></i><strong>Ferramenta Selecionar (<i class="fas fa-mouse-pointer" style="color: var(--cor-amarelo-claro);"></i>) é Chave:</strong> Volte sempre para esta ferramenta quando quiser interagir com camadas <strong>existentes</strong> (mover, redimensionar, rotacionar, selecionar para alterar cor/opacidade/espessura).</li>
+                <li><i class="fas fa-check-circle"></i><strong>Desfazer é Seu Amigo:</strong> Errou? Não se preocupe! Use o botão <i class="fas fa-undo" style="color: var(--cor-ciano-neon);"></i> <strong>Desfazer</strong>. Experimente sem medo.</li>
+                <li><i class="fas fa-check-circle"></i><strong>Diferença: Escala vs. Redimensionar:</strong> "Escala Principal" (na seção <i class="fas fa-sliders-h"></i> Ajustes) é só um <strong>zoom visual</strong> no editor. "Redimensionar Principal" (na seção <i class="fas fa-expand-arrows-alt"></i> Redimensionar) <strong>altera permanentemente os pixels</strong> da imagem base (e remove camadas!).</li>
+                <li><i class="fas fa-check-circle"></i><strong>Escolha de Formato:</strong> Use <strong>PNG</strong> ou <strong>WEBP</strong> se precisar de fundo transparente. Prefira <strong>JPEG</strong> para fotos se o tamanho do arquivo for prioridade e transparência não for necessária.</li>
+                 <li><i class="fas fa-check-circle"></i><strong>Borracha Limitada:</strong> Lembre-se que a borracha (<i class="fas fa-eraser" style="color: var(--cor-rosa-neon);"></i>) só afeta formas desenhadas com Caneta, Linha, Seta, Retângulo ou Círculo. Ela <strong>não</strong> apaga a imagem original nem camadas de Texto, Emoji ou Imagem sobreposta.</li>
+            </ul>
+            <p class="back-to-top"><a href="#indice-titulo"><i class="fas fa-arrow-up"></i> Voltar ao Índice</a></p>
+
+            <hr>
+
+            <!-- Conclusão -->
+            <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--cor-texto-secundario);">Esperamos que este tutorial torne sua experiência com o <span class="geek">Photo</span><span class="code">Shop</span> Fácil ainda melhor! Divirta-se editando!</p>
+
+        </section> <!-- Fim do .tutorial-section -->
+    </main> <!-- Fim do .tutorial-main -->
+
+    <!-- =============================== -->
+    <!-- RODAPÉ INFORMATIVO DO SITE      -->
+    <!-- =============================== -->
+    <footer class="site-footer">
+        <div class="footer-links">
+            <!-- Links internos -->
+            <a href="#privacy" rel="noopener noreferrer">Privacidade</a>
+            <span>|</span>
+            <a href="#services" rel="noopener noreferrer">Serviços</a>
+            <span>|</span>
+            <a href="#about" rel="noopener noreferrer">Sobre</a>
+            <span>|</span>
+            <a href="#terms" rel="noopener noreferrer">Termos</a>
+            <span>|</span>
+            <!-- Link para a página principal do editor -->
+            <a href="index.html" rel="noopener noreferrer">Editor</a>
+            <span>|</span>
+            <!-- Link externo GitHub (ajuste 'seu-usuario-github') -->
+            <a href="https://github.com/seu-usuario-github" target="_blank" rel="noopener noreferrer">Desenvolvido por <span class="geek">GΞΞK</span><span class="code"> CΦDΞ</span></a>
+        </div>
+        <p class="copyright">© <span id="current-year"></span> <span class="geek">GΞΞK</span><span class="code"> CΦDΞ</span>. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script para atualizar o ano no rodapé -->
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+           const currentYearSpan = document.getElementById('current-year');
+           if (currentYearSpan) {
+              currentYearSpan.textContent = new Date().getFullYear();
+           }
+       });
+    </script>
+
+</body>
+</html>
